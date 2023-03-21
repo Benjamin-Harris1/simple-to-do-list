@@ -9,7 +9,8 @@ function initApp() {
   document.querySelector("#btn-add-item").addEventListener("click", addToDo);
 }
 
-function addToDo() {
+// Udkommenteret fordi vi laver det samme på en anden måde nedenunder
+/* function addToDo() {
   const listItem = document.createElement("li");
   const listText = document.createElement("span");
   const listBtn = document.createElement("button");
@@ -29,6 +30,25 @@ function addToDo() {
   newToDo.value = "";
 
   listBtn.addEventListener("click", removeToDo);
+}
+
+function removeToDo() {
+  this.parentNode.remove();
+} */
+
+function addToDo() {
+  const myHTML = /*html*/ `
+  <li>
+    <span>${newToDo.value}</span>
+    <button>Delete</button>
+  </li>
+  `;
+  list.insertAdjacentHTML("beforeend", myHTML);
+
+  newToDo.value = "";
+  newToDo.focus();
+
+  list.querySelector("li:last-child button").addEventListener("click", removeToDo);
 }
 
 function removeToDo() {
